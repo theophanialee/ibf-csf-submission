@@ -28,7 +28,7 @@ COPY backend/src src
 # copy angular files to spring boot
 COPY --from=ngbuild /frontend/dist/frontend/browser/ src/main/resources/static
 
-# produce target/giphy-0.0.1-SNAPSHOT.jar
+# produce target/backend-0.0.1-SNAPSHOT.jar
 RUN ./mvnw package -Dmaven.test.skip=true
 
 # Run container
@@ -38,7 +38,8 @@ WORKDIR /app
 
 COPY --from=javabuild /backend/target/backend-0.0.1-SNAPSHOT.jar app.jar
 
-ENV PORT=8080 S3_KEY_ACCESS=DO00DHRWVRMLUVYTUX48 S3_KEY_SECRET=/y0J05qa4tqf2Yb8xT43zVEc77vhr/j2xPLJHj1BWE4 S3_ENDPOINT=sgp1.digitaloceanspaces.com S3_REGION=sgp1
+ENV PORT=8080 S3_KEY_ACCESS=DO00DHRWVRMLUVYTUX48 S3_KEY_SECRET=/y0J05qa4tqf2Yb8xT43zVEc77vhr/j2xPLJHj1BWE4 S3_ENDPOINT=sgp1.digitaloceanspaces.com S3_REGION=sgp1 SPRING_DATA_MONGODB_URI=mongodb://mongo:XGSjpyadLQdBgvFeGDWZjlcKSnRJUDfv@roundhouse.proxy.rlwy.net:55368 SPRING_DATA_MONGODB_DATABASE=travelpics
+
 
 EXPOSE ${PORT}
 
