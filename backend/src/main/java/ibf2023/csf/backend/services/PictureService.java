@@ -1,6 +1,7 @@
 package ibf2023.csf.backend.services;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class PictureService {
 	// TODO Task 5.1
 	// You may change the method signature by adding parameters and/or the return type
 	// You may throw any exception 
-	public String save(String title, String comments, MultipartFile picture, String datetime) {
+	public String save(String title, String comments, MultipartFile picture, String datetime) throws ParseException {
 
 		String s3Url = "";
 
@@ -32,8 +33,12 @@ public class PictureService {
 			e.printStackTrace();
 		}
 
-		String _id = picRepo.save(title, comments, s3Url, datetime, picture.getSize());
-		return _id;
+		if (picRepo.getMemory() >= picture.getSize()) {
+			String _id = picRepo.save(title, comments, s3Url, datetime, picture.getSize());
+			return _id;
+		} else {
+			return "";
+		}
 
 	}
 }
