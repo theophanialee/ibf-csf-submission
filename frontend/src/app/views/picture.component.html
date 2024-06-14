@@ -1,0 +1,29 @@
+<!-- View 2 -->
+
+<form  [formGroup]="picForm" (submit)="postImage()">
+<table>
+<tr>
+    <img [src]="pic" width="500"/>
+</tr>
+<tr>Title</tr>
+<tr>
+     <input formControlName="title" placeholder="Image Title">
+</tr>
+<tr>Comments</tr>
+<tr>
+     <textarea formControlName="comments" rows="5" name="comments" id="comments"></textarea>
+</tr>
+
+<tr>
+   
+    <td><button type="submit"> Post</button></td>
+   
+</tr>
+</table>
+
+</form>
+<button (click)="isFormDirty()">Back</button>
+
+Invalid {{ picForm.invalid }}
+Pristine {{ picForm.pristine }}
+Dirty {{ picForm.dirty }}

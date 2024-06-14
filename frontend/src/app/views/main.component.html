@@ -1,0 +1,38 @@
+<!-- View 1 -->
+
+<div>
+    <webcam [width]=500 [height]="height" [trigger]="trigger"
+        (imageCapture)="snapshot($event)">
+    </webcam>
+</div>
+
+<form action="">
+  Aspect: 
+  <table>
+<tr>
+   <td>
+    <input type="radio" id="16:9" name="ratio" value="16:9" (click)="youtube()" />
+   16:9
+   </td>
+   <td>
+    <input type="radio" id="4:3" name="ratio" value="4:3" (click)="tiktok()" />
+    4:3
+   </td>
+   <td>
+    <input type="radio" id="3:2" name="ratio" value="3:2" (click)="facebook()" />
+    3:2
+   </td>
+   <td>
+    <input type="radio" id="3:2" name="ratio" value="3:2" (click)="instagram()" />
+    1:1
+   </td>
+</tr>
+<tr>
+    <td>
+        <button type="button" (click)="snap()">Snap</button>
+    </td>  
+</tr>
+  </table>
+</form>
+
+  
