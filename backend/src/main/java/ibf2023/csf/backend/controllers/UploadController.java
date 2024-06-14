@@ -37,16 +37,11 @@ public class UploadController {
 			comments="";
 		};
 		System.out.println(">>>>>>>>> backend is called");
-		System.out.println(title);
+		String _id = picSvc.save(title, comments, picture, datetime);
+		System.out.println(_id);
 
-		System.out.println(picture.getBytes());
-
-		String s3Url = picSvc.save(title, comments, picture, datetime);
-		
-System.out.println(s3Url);
-	
 		return ResponseEntity.ok(
-			Json.createObjectBuilder().build().toString()
+				Json.createObjectBuilder().add("_id", _id).build().toString()
 		);
 	}
 

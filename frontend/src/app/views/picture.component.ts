@@ -60,9 +60,8 @@ console.log(dataToImage(this.picForm.get('picture')?.value));
 
     this.uploadSvc.upload(formData).subscribe({
       next: (data) => {
-        this.picForm.reset();
-        this.router.navigate(['/'])
-
+        // this.picForm.reset();
+        this.router.navigate(['/']);
       },
       error: (error) => {
        alert("Error in uploading picture")

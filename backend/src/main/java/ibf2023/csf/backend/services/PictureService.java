@@ -21,7 +21,19 @@ public class PictureService {
 	// TODO Task 5.1
 	// You may change the method signature by adding parameters and/or the return type
 	// You may throw any exception 
-	public String save(String title, String comments, MultipartFile picture, String datatime) throws IOException {
-		return s3Repo.save(title, comments, picture, datatime);
+	public String save(String title, String comments, MultipartFile picture, String datetime) {
+
+		String s3Url = "";
+
+		try {
+			s3Url = s3Repo.save(title, comments, picture, datetime);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		String _id = picRepo.save(title, comments, s3Url, datetime, picture.getSize());
+		return _id;
+
 	}
 }
